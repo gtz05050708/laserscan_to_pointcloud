@@ -10,7 +10,13 @@ project(scan_to_point)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  rospy
 )
+
+find_package(PCL 1.1 REQUIRED COMPONENTS common io)
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -204,4 +210,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 add_executable(to_point src/to_point.cpp)
-target_link_libraries(to_point ${catkin_LIBRARIES})
+target_link_libraries(to_point ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+catkin_install_python(PROGRAMS scripts/AngleNode.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
