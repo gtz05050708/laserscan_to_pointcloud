@@ -15,8 +15,8 @@
 ros::Publisher scan3d_pub;
 ros::Publisher angle_pub;
 
-const int INITIAL_ANGLE = 60;
-const int MAX_ANGLE = 160;
+const int INITIAL_ANGLE = 235;
+const int MAX_ANGLE = 55;
 int servo_angle = INITIAL_ANGLE;
 
 void saveCloud(sensor_msgs::PointCloud &pointcloud) {
@@ -52,10 +52,10 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     channelIntensity.name = "intensity";
     
     uint16_t pointCount = 0;     
-    float phi = 180 - servo_angle +30;
+    float phi = 55 + 180 - servo_angle;
     phi = phi / 180 * M_PI;
     
-    if (servo_angle > MAX_ANGLE) {
+    if (servo_angle < MAX_ANGLE) {
         angle_msg.data = std::to_string(INITIAL_ANGLE);
         angle_pub.publish(angle_msg);
         saveCloud(pointcloud);
@@ -77,7 +77,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     
     //angle_change = !angle_change;
     //if (angle_change) {
-    servo_angle++;
+    servo_angle--;
     //}
     angle_msg.data = std::to_string(servo_angle);
     angle_pub.publish(angle_msg);
@@ -91,7 +91,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 
 int main (int argc, char **argv)
 {
-    ros::init(argc, argv, "lidar_transformer");
+    ros::init(argc, argv, "transformer");
     ros::NodeHandle n;
     ros::Subscriber scanSubscriber = n.subscribe("/scan", 1000, scanCallback);
     scan3d_pub = n.advertise<sensor_msgs::PointCloud>("scan3d", 1000);
