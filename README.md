@@ -3,4 +3,7 @@ This is a ROS progam that transforms the 2D laser data generated from a RPlidar 
 
 # To Run
 Place the repository within catkin workspace and run the Make file to compile. 
-Run scan_to_point to generate 3d point cloud from the lidar and save it as a ply format.
+Run launch file to generate 3d point cloud from the lidar and save it as a pcd format.
+
+# Hardware
+The lidar used is a RPlidar A2, and it is mounted on a custom hardware platform for rotating the lidar. Rplidar's ROS package is used to acquire data from the lidar. The package is available on Github at https://github.com/robopeak/rplidar_ros 
