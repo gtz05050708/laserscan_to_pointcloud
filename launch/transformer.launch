@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+     <node pkg="scan_to_point" type="AngleNode.py" name="pymata" />
+     <node pkg="scan_to_point" type="to_point" name="transformer" />
+</launch>

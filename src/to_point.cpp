@@ -38,7 +38,6 @@ void saveCloud(sensor_msgs::PointCloud &pointcloud) {
 void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
 
-    //static bool angle_change = true;
     sensor_msgs::LaserScan scan = (sensor_msgs::LaserScan)*msg;
    
     static int seq = 0;
@@ -75,10 +74,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         pointCount++;  
     }
     
-    //angle_change = !angle_change;
-    //if (angle_change) {
     servo_angle--;
-    //}
     angle_msg.data = std::to_string(servo_angle);
     angle_pub.publish(angle_msg);
 
