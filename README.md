@@ -7,3 +7,5 @@ Run launch file to generate 3d point cloud from the lidar and save it as a pcd f
 
 # Hardware
 The lidar used is a RPlidar A2, and it is mounted on a custom hardware platform for rotating the lidar. Rplidar's ROS package is used to acquire data from the lidar. The package is available on Github at https://github.com/robopeak/rplidar_ros 
+
+# Example Results
